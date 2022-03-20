@@ -1,0 +1,34 @@
+.App-header{
+    background-color: blue;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items:flex-start;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.App-Logo {
+    height: 20vmin;
+    justify-content: left;
+}
+
+/* @media (prefers-reduced-motion: no-preference) {
+.App-logo {
+  animation: App-logo-spin infinite 5s linear;
+  animation: App-logo-spin-2 infinite 5s linear;
+    }
+}
+
+@keyframes App-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(180deg);
+    }
+  }
+
+   */
