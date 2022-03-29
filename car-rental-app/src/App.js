@@ -7,6 +7,19 @@ import Order from './components/Order';
 import SignUp from './components/SignUp';
 
 function App() {
+  const users = []
+  const user = {}
+
+  const submitTask = (newUser) =>
+  {
+    users.push(newUser);
+    console.log(users);
+  }
+
+  const loginUser = (details) => {
+    users.some(user => user.password === details.password && user.email === details.email)
+  }
+
   return (
     <div className="App">
           <Router>
@@ -15,7 +28,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/order" element={<Order />} />
-            <Route path="/signUp" element={<SignUp />} />
+            <Route path="/signUp" element={<SignUp onSubmit={submitTask}  />} />
           </Routes>
         </Router>
     </div>
