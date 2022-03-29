@@ -6,7 +6,7 @@ import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import { Row } from 'react-bootstrap';
 import { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 
 const SignUp = ({onSubmit}) => {
      const [name, setName] = useState('');
@@ -15,12 +15,19 @@ const SignUp = ({onSubmit}) => {
      const [email, setEmail] = useState('');
      const [password, setPassword] = useState('');
      const [isMale, setIsMale] = useState(true);
+     const navigate = useNavigate();
+
+     const add = () => {
+          onSubmit(
+               {"name": name, "id": id, "birthDate": date, "email": email, "password" : password,
+                "gender": (isMale ? "male" : "female")});
+               navigate("/login");
+     }
 
     return (
     <div className="signUp">
         <h1>Sign Up Page</h1>
-        <form className='signUp-form' onSubmit={(e) => {
-              onSubmit( {"name": name, "id": id, "birthDate": date, "email": email, "gender": (isMale ? "male" : "female")})}}>
+        <form className='signUp-form' onSubmit={() => add()}>
            <div className='form-control'>
                 <label>שם מלא</label>
                 <input type='text' placeholder='שם מלא'
@@ -33,7 +40,7 @@ const SignUp = ({onSubmit}) => {
            </div> 
            <div className='form-control'>
                 <label>תאריך לידה</label>
-                <input type='date' placeholder='תאריך לידה'
+                <input type='date' placeholder='תאריך לידה' defaultValue={Date.now()}
                 value={date} onChange={(e) => setDate(e.target.value)} required/>
            </div> 
            <div className='form-control'>
