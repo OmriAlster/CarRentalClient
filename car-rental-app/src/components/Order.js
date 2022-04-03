@@ -1,7 +1,9 @@
+import CarCard from "./CarCard";
+
 const Order = () => {
     return (
     <order className="order">
-        <h1>Order Page</h1>
+        <CarCard/>
     </order>
     )
   };

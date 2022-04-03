@@ -1,13 +1,35 @@
 .App-header{
     background-color: blue;
-    height: auto;
-    display: flex;
+    height: 10vh;
+    display: block;
     flex-direction: row;
-    align-items:flex-start;
     justify-content: center;
     font-size: calc(10px + 2vmin);
     color: white;
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.header {
+  background-color:blue;
+  display: flex;
+  justify-content: space-between;
+  border: 8px solid white;
+  border-style:double;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.rightSide {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.leftSide {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .App-Logo {

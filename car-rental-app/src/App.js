@@ -5,23 +5,28 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Login from './components/Login';
 import Order from './components/Order';
 import SignUp from './components/SignUp';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function App() {
   const [users, setUsers] = useState([]);
   const [user, setUser] = useState({});
 
+  useEffect(() => {
+    let localUsers = JSON.parse(localStorage.getItem('users'));
+    if (localUsers)
+      setUsers(localUsers);
+  }, users);
+
   const submitTask = (newUser) =>
   {
     users.push(newUser)
-    setUsers(users);
-    console.log(users);
+    localStorage.setItem("users", JSON.stringify(users));
   }
 
   const loginUser = (details) => {
     let a = users.find(user => user.password === details.password && user.email === details.email);
     if (a != undefined){
-      setUser(a)
+      localStorage.setItem("user", JSON.stringify(a));
       return true; }
     return false;
   }
@@ -29,7 +34,7 @@ function App() {
   return (
     <div className="App">
           <Router>
-          <Header user={user} />
+          <Header />
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<Login onSubmit={loginUser}/>} />

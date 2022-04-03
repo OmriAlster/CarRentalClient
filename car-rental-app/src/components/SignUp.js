@@ -4,7 +4,7 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
-import { Row } from 'react-bootstrap';
+import { Stack } from 'react-bootstrap';
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -54,7 +54,8 @@ const SignUp = ({onSubmit}) => {
                 value={password} onChange={(e) => setPassword(e.target.value)} required/>
            </div> 
            <div className='form-control'>
-                <FormControl style={{flexDirection:'row'}} component="fieldset">
+                <Stack direction="column" spacing={10}>
+                <FormControl component="fieldset">
                 <FormLabel component="legend">מין</FormLabel>
                 <RadioGroup >
                     <FormControlLabel  control={<Radio checked={!isMale} onSelect
@@ -63,8 +64,9 @@ const SignUp = ({onSubmit}) => {
                     onChange={(e) => setIsMale(!isMale)}/>} label="זכר" required/>
                 </RadioGroup>
                 </FormControl>
+                </Stack>
            </div>
-           <div style={{flexDirection:'row'}} className='form-control'>
+           <div className='form-control'>
                 <label>תמונת פרופיל</label>
                 <input type="file"/>
            </div>

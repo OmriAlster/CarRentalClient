@@ -10,7 +10,7 @@ import { Card, CardGroup } from 'react-bootstrap'
 
 const HomePage = () => {
   return (
-  <div style={{backgroundColor:"lightblue"}} className="homepage">
+  <div style={{backgroundColor:"gainsboro"}} className="homepage">
         <img style={{height:"20vh"}} src={TripleCars}/>
         <h3> גלובוס - האתר שלכם להשכרת רכב</h3>
             <img style={{height:"20vh"}} src={BMW}/>
