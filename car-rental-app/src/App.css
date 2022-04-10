@@ -1,7 +1,12 @@
 .App {
   text-align: center;
   font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  background-color: gainsboro;
+  background-image: url('https://image.shutterstock.com/image-photo/designed-grunge-paper-texture-background-600w-100601029.jpg');
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  min-height: 100vh;
 }
 .App-link {
   color: #61dafb;

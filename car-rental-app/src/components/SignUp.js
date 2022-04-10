@@ -7,6 +7,8 @@ import FormLabel from '@material-ui/core/FormLabel';
 import { Stack } from 'react-bootstrap';
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "./SignUp.css"
+
 
 const SignUp = ({onSubmit}) => {
      const [name, setName] = useState('');
@@ -68,7 +70,7 @@ const SignUp = ({onSubmit}) => {
            </div>
            <div className='form-control'>
                 <label>תמונת פרופיל</label>
-                <input type="file"/>
+                <input name="profile-pic" type="file"/>
            </div>
            <input type='submit' className='btn btn-block'/>
         </form>

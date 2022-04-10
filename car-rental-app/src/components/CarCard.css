@@ -9,8 +9,9 @@
    background-color: white;
    border-radius: 20px;
    font-weight: bold;
-   min-width: 200px;
-   min-height: 300px;
+   min-width: 300px;
+   min-height: 350px;
+   margin: 1vw;
 }
 
 .carCard a {
@@ -27,6 +28,7 @@
     grid-column-start: 1;
     grid-column-end: 4;
     grid-row: 1;
+    align-self: center;
 }
 .photo {
     grid-column-start: 1;
@@ -36,32 +38,40 @@
     width: 100%;
     height: 100%;
 }
-.team {
+.company {
     grid-column-start: 1;
     grid-row: 3;
 }
-.ppg {
+.year {
     grid-column-start: 2;
     grid-row: 3;
     border-left: 2px solid black;
 }
-.pt3 {
+.num {
     grid-column-start: 3;
     grid-row: 3;
     border-left: 2px solid black;
 }
-.rpg {
+.place {
     grid-column-start: 1;
     grid-row: 4;border-top: 2px solid black;
 }
-.apg {
+.dayPrice {
     grid-column-start: 2;
     grid-row: 4;border-top: 2px solid black;
     border-left: 2px solid black;
 }
-.spg {
+.gear {
     grid-column-start: 3;
     grid-row: 4;
     border-top: 2px solid black;
-   border-left: 2px solid black;
+    border-left: 2px solid black;
+}
+
+.btn-order{
+    background-color: white;
+    border: 2px solid black;
+    padding: 0px;
+    height: 100vh;
+    width: 100%vw;
 }

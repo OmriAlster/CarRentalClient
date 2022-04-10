@@ -4,13 +4,14 @@ import Car1 from '../icons/Car1.png'
 import Corvette from '../icons/corvette.png'
 import Spark from '../icons/chevroletSpark.png'
 import Mazda3 from '../icons/mazda3.png'
+import CarModal from "./CarModal";
 import './HomePage.css'
 import { Card, CardGroup } from 'react-bootstrap'
 
 
 const HomePage = () => {
   return (
-  <div style={{backgroundColor:"gainsboro"}} className="homepage">
+  <div className="homepage">
         <img style={{height:"20vh"}} src={TripleCars}/>
         <h3> גלובוס - האתר שלכם להשכרת רכב</h3>
             <img style={{height:"20vh"}} src={BMW}/>

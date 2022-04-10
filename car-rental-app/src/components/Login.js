@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import swal from "sweetalert";
 import './Header.css'
 
 const Login = ({onSubmit}) => {
@@ -11,10 +12,10 @@ const Login = ({onSubmit}) => {
     const updateLogOn = (e) => {
       if (onSubmit({ "email":loginEmail, "password": loginPassword }))
       {
-        setLogOn(true);
+        swal("ברוך הבא", "התחברת בהצלחה", "success");
         navigate("/"); 
       } else {
-        setLogOn(false);
+        swal("ההתחברות נכשלה", "כניסתך נכשלה, ודא שכל הפרטים נכונים" , "error");
         e.preventDefault();
       }
     }
@@ -35,7 +36,6 @@ const Login = ({onSubmit}) => {
         </div>
         <input type='submit' className='btn btn-block'/>
         </form>
-        {!logOn ? <h3>error in login</h3> : <a/>}
     </login>
     )
   };
