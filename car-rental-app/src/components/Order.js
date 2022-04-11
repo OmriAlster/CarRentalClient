@@ -1,12 +1,9 @@
 import CarCard from "./CarCard";
-import { useState, useEffect } from "react";
-import { Button, Modal} from "react-bootstrap"
-import { useLocalStorage } from "../UseLocalStorge";
+import { useState } from "react";
 import './Order.css';
-import CarModal from "./CarModal";
 
 const Order = () => {
-    const [cars, setCars] = useState([{
+    const [cars] = useState([{
         "id" : 1,
         "name" : "שברולט ספארק",
         "photo" : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLGryn32vH5Pbq2evqjgwCBsjjPdK3SoI2kQ&usqp=CAU",
@@ -87,24 +84,10 @@ const Order = () => {
         "lateBonus": 150,
         "gear": "אוטומטי"
     }])
-    const [modalCar, setModalCar] = useState({});
-    const [interest, setInterest] = useLocalStorage("interest", [])
-    const [show, setShow] = useState(false);
-
-    const handleClose = () => {
-        setShow(false);
-    }
-
-    const handleOpen = (car) => {
-        setShow(true);
-        setModalCar(car);
-        setInterest([car , ...interest.filter((item) => item.id !== car.id)]);
-    }
 
     return (
     <order className="order">
-        {cars.map((car, index) => (<a onClick={()=>handleOpen(car)}><CarCard key={index} car={car}/></a>))}
-        <CarModal car={modalCar} show={show} handleClose={handleClose}></CarModal>
+        {cars.map((car, index) => (<CarCard key={index} car={car}/>))}
     </order>
     )
   };

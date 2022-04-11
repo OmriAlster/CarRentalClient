@@ -6,28 +6,21 @@ import Login from './components/Login';
 import Order from './components/Order';
 import SignUp from './components/SignUp';
 import  History  from './components/History';
-import { useState, useEffect } from "react";
+import { useLocalStorage } from './UseLocalStorage';
 
 function App() {
-  const [users, setUsers] = useState([]);
-  const [user, setUser] = useState({});
-
-  useEffect(() => {
-    let localUsers = JSON.parse(localStorage.getItem('users'));
-    if (localUsers)
-      setUsers(localUsers);
-  }, users);
+  const [users, setUsers] = useLocalStorage("users",[])
+  const [user, setUser] = useLocalStorage("user",{})
 
   const submitTask = (newUser) =>
   {
-    users.push(newUser)
-    localStorage.setItem("users", JSON.stringify(users));
+    setUsers([...users, newUser])
   }
 
   const loginUser = (details) => {
     let a = users.find(user => user.password === details.password && user.email === details.email);
-    if (a != undefined){
-      localStorage.setItem("user", JSON.stringify(a));
+    if (a !== undefined){
+      setUser(a);
       return true; }
     return false;
   }

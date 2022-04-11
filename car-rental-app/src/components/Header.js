@@ -28,23 +28,6 @@ const Header = () => {
           localStorage.removeItem('user');
           setUser();
         }});
-    // confirmAlert({
-    //   title: 'Logout',
-    //   message: 'בטוח שבאלך להתנתק?',
-    //   buttons: [
-    //     {
-    //       label: 'כן',
-    //       onClick: () => {localStorage.removeItem('user');
-    //       setUser();}
-    //     },
-    //     {
-    //       label: 'לא',
-    //       onClick: () => {}
-    //     }]
-    // });
-
- //   localStorage.removeItem('user');
- //   setUser();
   }
 
   return (
@@ -57,17 +40,21 @@ const Header = () => {
         </Nav.Link>
         </div>
         <div className="rightSide">
-        {!user && <Nav.Link  style={myStyle} onClick={() => navigate("/signUp")}>
+        {user.id === undefined && <><Nav.Link  style={myStyle} onClick={() => navigate("/signUp")}>
           <h1 style={navStyle} > Sign Up</h1>
-        </Nav.Link>}
-        {!user && <Nav.Link style={myStyle} onClick={() => navigate("/login")}>
+        </Nav.Link>
+        <Nav.Link style={myStyle} onClick={() => navigate("/login")}>
           <h1 style={navStyle} > Login</h1>
-        </Nav.Link>}
-        {user != undefined && <Nav.Link style={myStyle} onClick={() => navigate("/order")}>
+        </Nav.Link></>}
+        {user.id !== undefined && <><Nav.Link style={myStyle} onClick={() => navigate("/order")}>
           <h1 style={navStyle} > Order</h1>
-        </Nav.Link>}
-        {user != undefined && <h3 style={navStyle, myStyle}>שלום, {user.name}</h3>}
-        {user != undefined && <span onClick={logout}><RiLogoutCircleLine size={35} style={navStyle,myStyle,{color:'black'}}/></span>}
+        </Nav.Link>
+        <Nav.Link style={myStyle} onClick={() => navigate("/history")}>
+          <h1 style={navStyle} > History</h1>
+        </Nav.Link>
+        <h3 style={navStyle , myStyle}>שלום, {user.name}</h3>
+        <span onClick={logout}><RiLogoutCircleLine size={35} style={navStyle,myStyle,{color:'black'}}/></span>
+        </>}
       </div>
     </header>
   </ReactNavbar>
