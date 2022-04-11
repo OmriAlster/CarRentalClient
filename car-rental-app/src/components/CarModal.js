@@ -40,7 +40,7 @@ const CarModal = ( {car, handleClose, show}) => {
             <input type='date' value={end}  onChange={(e) => setEnd(e.target.value)}/>
             { price != 0 &&
             <> <label>מחיר כולל:</label>
-            <h1>{price}</h1></> }
+            <h1>{`${price} $`}</h1></> }
           <Button className="btn" type="button" onClick={order}>הזמן</Button>
         </section>
       </carModal>

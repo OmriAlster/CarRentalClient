@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Login from './components/Login';
 import Order from './components/Order';
 import SignUp from './components/SignUp';
+import  History  from './components/History';
 import { useState, useEffect } from "react";
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
             <Route path="/login" element={<Login onSubmit={loginUser}/>} />
             <Route path="/order" element={<Order />} />
             <Route path="/signUp" element={<SignUp onSubmit={submitTask}  />} />
+            <Route path="/history" element={<History />} />
           </Routes>
         </Router>
     </div>

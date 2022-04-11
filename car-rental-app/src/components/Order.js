@@ -1,11 +1,13 @@
 import CarCard from "./CarCard";
 import { useState, useEffect } from "react";
 import { Button, Modal} from "react-bootstrap"
+import { useLocalStorage } from "../UseLocalStorge";
 import './Order.css';
 import CarModal from "./CarModal";
 
 const Order = () => {
     const [cars, setCars] = useState([{
+        "id" : 1,
         "name" : "שברולט ספארק",
         "photo" : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLGryn32vH5Pbq2evqjgwCBsjjPdK3SoI2kQ&usqp=CAU",
         "brand" : {
@@ -21,6 +23,7 @@ const Order = () => {
         "lateBonus": 150,
         "gear": "אוטומטי"
     }, {
+        "id" : 2,
         "name" : " + שברולט ספארק",
         "photo" : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLGryn32vH5Pbq2evqjgwCBsjjPdK3SoI2kQ&usqp=CAU",
         "brand" : {
@@ -36,6 +39,7 @@ const Order = () => {
         "lateBonus": 150,
         "gear": "אוטומטי"
     } , {
+        "id" : 3,
         "name" : " S שברולט ספארק",
         "photo" : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLGryn32vH5Pbq2evqjgwCBsjjPdK3SoI2kQ&usqp=CAU",
         "brand" : {
@@ -51,6 +55,7 @@ const Order = () => {
         "lateBonus": 150,
         "gear": "אוטומטי"
     } , {
+        "id" : 4,
         "name" : "שברולט ספארק",
         "photo" : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLGryn32vH5Pbq2evqjgwCBsjjPdK3SoI2kQ&usqp=CAU",
         "brand" : {
@@ -66,6 +71,7 @@ const Order = () => {
         "lateBonus": 150,
         "gear": "אוטומטי"
     } ,{
+        "id" : 5,
         "name" : "שברולט ספארק",
         "photo" : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLGryn32vH5Pbq2evqjgwCBsjjPdK3SoI2kQ&usqp=CAU",
         "brand" : {
@@ -82,7 +88,7 @@ const Order = () => {
         "gear": "אוטומטי"
     }])
     const [modalCar, setModalCar] = useState({});
-  //  const [interest, setInterest] = useState([]);
+    const [interest, setInterest] = useLocalStorage("interest", [])
     const [show, setShow] = useState(false);
 
     const handleClose = () => {
@@ -92,16 +98,8 @@ const Order = () => {
     const handleOpen = (car) => {
         setShow(true);
         setModalCar(car);
-      //  setInterest(interest.filter((item) => item !== car));
-     //   setInterest(interest.push(car));
-      //  localStorage.setItem("interests", JSON.stringify(interest));
+        setInterest([car , ...interest.filter((item) => item.id !== car.id)]);
     }
-
-    // useEffect(() => {
-    //     let currInterest = JSON.parse(localStorage.getItem('interests'));
-    //     if (currInterest)
-    //         setInterest(currInterest);
-    //   }, [interest]);
 
     return (
     <order className="order">
