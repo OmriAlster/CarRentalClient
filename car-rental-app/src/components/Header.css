@@ -37,6 +37,21 @@
     justify-content: left;
 }
 
+.link{
+  text-decoration-line: none;
+  text-align: 'center';
+  color: 'white';
+  font-weight: bold;
+}
+
+.logout:hover{
+  color: red;
+}
+
+.link:hover{
+  opacity:initial;
+  transform: scale(1.2);
+}
 /* @media (prefers-reduced-motion: no-preference) {
 .App-logo {
   animation: App-logo-spin infinite 5s linear;

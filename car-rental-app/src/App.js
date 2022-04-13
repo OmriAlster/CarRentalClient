@@ -10,7 +10,7 @@ import { useLocalStorage } from './UseLocalStorage';
 
 function App() {
   const [users, setUsers] = useLocalStorage("users",[])
-  const [user, setUser] = useLocalStorage("user",{})
+  const [user, setUser] = useLocalStorage("user",)
 
   const submitTask = (newUser) =>
   {
@@ -25,10 +25,14 @@ function App() {
     return false;
   }
 
+  const logoutUser = () => {
+    setUser();
+  }
+
   return (
     <div className="App">
           <Router>
-          <Header />
+          <Header logoutUser={logoutUser} user={user} />
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<Login onSubmit={loginUser}/>} />

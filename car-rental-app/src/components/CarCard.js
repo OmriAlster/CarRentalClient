@@ -9,7 +9,7 @@ const CarCard = ({car}) => {
         "שנה" : car.year,
         "מספר" : car.num,
         "סניף" : car.place,
-        "מחיר יומי" : car.pricePerDay,
+        "מחיר יומי" : `$ ${car.pricePerDay}`,
         "גיר" : car.gear
     }
     const tab = (attName,str) =>{

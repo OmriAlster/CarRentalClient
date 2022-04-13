@@ -4,3 +4,16 @@
     justify-content: flex-start;
     flex-wrap: wrap;
 }
+.filterIcon{
+    display: inline-block;
+    size: 50;
+}
+
+.filterIcon:hover{
+    transform: scale(1.5);
+}
+
+.filter{
+    display: flex;
+    flex-direction: column;
+}

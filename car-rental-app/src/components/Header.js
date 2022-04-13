@@ -3,18 +3,13 @@ import  AppLogo  from '../icons/carAppLogo.png'
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
 import { Nav, Navbar as ReactNavbar,  } from "react-bootstrap";
-import { useEffect, useState } from "react";
 import { RiLogoutCircleLine } from 'react-icons/ri';
 
-const Header = () => {
+const Header = ({user, logoutUser}) => {
   const navigate = useNavigate();
   const myStyle = { marginLeft: 15, marginRight: 15 };
   const navStyle = { textAlign: 'center', color: 'white'};
-  const [user, setUser] = useState();
-  
-  useEffect(() => {
-    setUser(JSON.parse(localStorage.getItem('user')));
-  }, user);
+  const linkStyle = {}
 
   const logout =()=> {
     swal(
@@ -25,9 +20,16 @@ const Header = () => {
         buttons: true,
       }).then((willDelete) => {
         if (willDelete) {
-          localStorage.removeItem('user');
-          setUser();
+          logoutUser()
         }});
+  }
+
+  const link=(path, text)=>{
+    return (
+      <div className="link" style={myStyle} onClick={() => navigate(path)}>
+        {text}
+      </div>
+    )
   }
 
   return (
@@ -35,25 +37,15 @@ const Header = () => {
     <header className="header">
       <div className="leftSide">
         <img alt="dd" src={AppLogo} className="App-Logo"/>
-        <Nav.Link  style={myStyle} onClick={() => navigate("/")}>
-          <h1 style={navStyle} > Globus Car Rental </h1>
-        </Nav.Link>
+        {link("/","השכרת רכב גלובוס בע''מ")}
         </div>
         <div className="rightSide">
-        {user.id === undefined && <><Nav.Link  style={myStyle} onClick={() => navigate("/signUp")}>
-          <h1 style={navStyle} > Sign Up</h1>
-        </Nav.Link>
-        <Nav.Link style={myStyle} onClick={() => navigate("/login")}>
-          <h1 style={navStyle} > Login</h1>
-        </Nav.Link></>}
-        {user.id !== undefined && <><Nav.Link style={myStyle} onClick={() => navigate("/order")}>
-          <h1 style={navStyle} > Order</h1>
-        </Nav.Link>
-        <Nav.Link style={myStyle} onClick={() => navigate("/history")}>
-          <h1 style={navStyle} > History</h1>
-        </Nav.Link>
+        {(!user || !user.id) && <>{link("/signUp","SignUp")}
+        {link("/login","כניסה")}</>}
+        {user !== undefined && user.id !== undefined && <>{link("/order","להזמין")}
+        {link("/history","היסטוריה")}
         <h3 style={navStyle , myStyle}>שלום, {user.name}</h3>
-        <span onClick={logout}><RiLogoutCircleLine size={35} style={navStyle,myStyle,{color:'black'}}/></span>
+        <span onClick={logout}><RiLogoutCircleLine className="logout" size={35} style={navStyle,myStyle,{color:'black'}}/></span>
         </>}
       </div>
     </header>

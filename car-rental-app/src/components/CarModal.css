@@ -12,7 +12,7 @@
     flex-direction: column;
     position:fixed;
     background: white;
-    width: auto;
+    min-width: 30%;
     height: auto;
     top:50%;
     left:50%;

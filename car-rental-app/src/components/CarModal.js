@@ -37,7 +37,7 @@ const CarModal = ( {car, handleClose, show}) => {
             <AiOutlineClose size={55} style={{alignSelf:"flex-start"}} onClick={handleClose} />
             <h1 style={{alignSelf:"center"}}>{car.name}</h1>
           </section>
-          <img src={car.photo} className="photo" style={{width:"80%", height:"80%"}}></img>
+          <img src={car.photo} className="photo" style={{width:"300px", height:"200px"}}></img>
             <label>התחלה:</label>
             <input type='date' value={start} onChange={(e) => setStart(e.target.value)}/>
             <label>סיום:</label>
