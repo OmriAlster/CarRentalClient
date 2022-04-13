@@ -3,6 +3,7 @@ import { useState } from "react";
 import './Order.css';
 import {FaFilter} from'react-icons/fa';
 import Filter from "./Filter";
+import {Today} from "../Dates";
 
 const Order = () => {
     const [cars] = useState([{
@@ -87,18 +88,23 @@ const Order = () => {
         "gear": "ידני"
     }])
     const [showFilter,setFilter] = useState(false);
-    const [years,setYears] = useState({start:1999,end:2022});
+    const [years,setYears] = useState({start:'1999',end:'2022'});
     const [dates, setDates] = useState({start:undefined,end:undefined})
-    const [price, setPrice] = useState({start:undefined,end:undefined})
+    const [price, setPrice] = useState({start:'0',end:undefined})
+    const [gear, setGear] = useState("הכל")
+
+    const between = (value,object) => {
+        return  (!object.end || (value <= object.end && (!object.start || value >= object.start)));
+    }
 
     return (
     <order>
         <section className="filter">
         <FaFilter className="filterIcon" onClick={()=> setFilter(!showFilter)}/>
-        {showFilter && <Filter  price={{set:setPrice,get:price}} dates={{set:setDates,get:dates}} years={{set:setYears,get:years}}></Filter>}
+        {showFilter && <Filter gear={{set:setGear,get:gear}} price={{set:setPrice,get:price}} dates={{set:setDates,get:dates}} years={{set:setYears,get:years}}></Filter>}
         </section>
         <section className="order">
-        {cars.filter(car => car.year >= years.start && car.year <= years.end).map((car, index) => (<CarCard key={index} car={car}/>))}
+        {cars.filter(car => (gear === "הכל" || car.gear === gear) && between(car.year,years) && between(car.pricePerDay,price)).map((car, index) => (<CarCard key={index} car={car}/>))}
         </section>
     </order>
     )

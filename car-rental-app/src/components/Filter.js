@@ -1,19 +1,20 @@
 import { useState, useEffect } from "react";
 import "./Filter.css"
 import Select from "react-select"
+import {dayAfter, dayString, Today, Tomorrow} from "../Dates";
 
-const Filter = ({years, price, dates}) => {
-    const dayString = (day) => {
-        return new Date(day).toISOString().substr(0, 10);
-      }
-
-   // const [dates, setDates] = useState({start:undefined,end:undefined})
-    //const [years, setYears] = useState({start:1999,end:2022})
-  //  const [price, setPrice] = useState({start:undefined,end:undefined})
+const Filter = ({gear,years, price, dates}) => {
     const options = [
+        {value:"הכל", label:"הכל"},
         {value:"אוטומטי", label:"אוטומטי"},
         {value:"ידני", label:"ידני"}
     ]
+
+    const a = () => {
+        if (Date.parse(Tomorrow()) < Date.parse(dates.get.start))
+            return dayAfter(dates.get.start);
+        return Tomorrow();
+    }
 
     return (
         <filter className="filter-a">
@@ -24,22 +25,22 @@ const Filter = ({years, price, dates}) => {
             </div>
             <div className="a">
             <label>תאריכים</label>
-                <input type='date' value={dates.get.start} onChange={(e) => dates.set({start:e.target.value, end:dates.get.end})}/>
-                <input type='date' value={dates.get.end}  onChange={(e) => dates.set({start:dates.get.start, end:e.target.value})}/>
+                <input type='date' min={Today()} max={dates.get.end} value={dates.get.start} onChange={(e) => dates.set({start:e.target.value, end:dates.get.end})}/>
+                <input type='date' min={a()} value={dates.get.end}  onChange={(e) => dates.set({start:dates.get.start, end:e.target.value})}/>
             </div>
             <div className="a">
                 <label>שנה</label>
-                <input min="1999" max="2022" type='number' value={years.get.start} onChange={(e) => years.set({start:e.target.value, end:years.get.end})}/>
-                <input min="1999" max="2022" type='number' value={years.get.end} onChange={(e) => years.set({start:years.get.start, end:e.target.value})}/>
+                <input min="1999" max="2022" max={years.get.end} type='number' value={years.get.start} onChange={(e) => years.set({start:e.target.value, end:years.get.end})}/>
+                <input min="1999" max="2022"  min={years.get.start} type='number' value={years.get.end} onChange={(e) => years.set({start:years.get.start, end:e.target.value})}/>
             </div>
             <div className="a">
                 <label>מחיר</label>
-                <input type='number' min="0" value={price.get.start} onChange={(e) => price.set({start:e.target.value, end:price.get.end})}/>
-                <input type='number' min="0" value={price.get.end} onChange={(e) => price.set({start:price.get.start, end:e.target.value})}/>
+                <input type='number' min="0" max={price.get.end} value={price.get.start} onChange={(e) => price.set({start:e.target.value, end:price.get.end})}/>
+                <input type='number' min={price.get.start} value={price.get.end} onChange={(e) => price.set({start:price.get.start, end:e.target.value})}/>
             </div>
             <div className="a">
                 <label>גיר</label>
-                <Select options={options} defaultValue={options[0]}></Select>
+                <Select options={options} onChange={(value) => gear.set(value.value)} value={options.find(op => op.value === gear.get)}></Select>
             </div>
         </filter>
     )

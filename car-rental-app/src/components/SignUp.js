@@ -8,6 +8,7 @@ import { Stack } from 'react-bootstrap';
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./SignUp.css"
+import { dayString, Today } from '../Dates';
 
 
 const SignUp = ({onSubmit}) => {
@@ -42,7 +43,7 @@ const SignUp = ({onSubmit}) => {
            </div> 
            <div className='form-control'>
                 <label>תאריך לידה</label>
-                <input type='date' placeholder='תאריך לידה' defaultValue={Date.now()}
+                <input type='date' max={Today()} placeholder='תאריך לידה' defaultValue={Date.now()}
                 value={date} onChange={(e) => setDate(e.target.value)} required/>
            </div> 
            <div className='form-control'>

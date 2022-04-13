@@ -3,18 +3,16 @@ import { Button } from "react-bootstrap";
 import swal from "sweetalert";
 import "./CarModal.css";
 import { AiOutlineClose } from 'react-icons/ai';
+import {dayString, Today, Tomorrow} from "../Dates";
 
 const CarModal = ( {car, handleClose, show}) => {
-  const dayString = (day) => {
-    return new Date(day).toISOString().substr(0, 10);
-  }
-
-  useEffect(() => { setPrice(diffDays(start, end) * car.pricePerDay, price) });
 
   const showHideClassName = show ? "modal display-block" : "modal display-none";
-  const [start, setStart] = useState(dayString(Date.now()));
-  const [end, setEnd] = useState(dayString(Date.now()));
+  const [start, setStart] = useState(Today());
+  const [end, setEnd] = useState();
   const [price, setPrice] = useState(0);
+
+  useEffect(() => { setPrice(diffDays(start, end) * car.pricePerDay, price) });
 
   const order = () => {
     if (price === 0)
@@ -39,9 +37,9 @@ const CarModal = ( {car, handleClose, show}) => {
           </section>
           <img src={car.photo} className="photo" style={{width:"300px", height:"200px"}}></img>
             <label>התחלה:</label>
-            <input type='date' value={start} onChange={(e) => setStart(e.target.value)}/>
+            <input type='date' min={Today()} max={end} value={start} onChange={(e) => setStart(e.target.value)}/>
             <label>סיום:</label>
-            <input type='date' value={end}  onChange={(e) => setEnd(e.target.value)}/>
+            <input type='date' min={Tomorrow()} value={end}  onChange={(e) => setEnd(e.target.value)}/>
             { price !== 0 &&
             <> <label>מחיר כולל:</label>
             <h1>{`${price} $`}</h1></> }
